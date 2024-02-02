@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="bookmark.css">
+    
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+          <div class="col-12 mt-3"  >
+              <h1 class="container-heading">Hello</h1>
+              <h1 class="container-desc">Jane Doe</h1>
+              <div class="pt-3 bookmarkcontainer">
+                  <h1 class="bookmarkheading">BookMark Your Favourite Sites</h1>
+                  <form class="boxcontainer m-4" id="bookmarkForm">
+                    <label for="siteNameInput" class="sitename">SITE NAME</label>  <br><br>
+                    <input id="siteNameInput" type="text" placeholder="Enter Site Name"><br><br>
+                    <p id="siteNameErrMsg"></p>
+                    <label for="siteUrlInput" class="sitename">SITE URL</label>  <br><br>
+                    <input id="siteUrlInput" type="text" placeholder="Enter Site url"><br><br>
+                    <p id="siteUrlErrMsg"></p>
+                    <div class="text-right pr-2">
+                    <button type="submit" id="submitBtn" class="button1">submit</button>
+                    </div>
+                  </form>
+                  <div class="mt-3 boxcontainer">
+                      <ul class="d-none google-box" id="bookmarksList">
+                          
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
+    <script src="bookmark.js"></script>
+  </body>
+</html>
