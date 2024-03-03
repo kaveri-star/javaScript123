@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <style>
+        .container {
+            background-image: linear-gradient(#dac0ff, #f3eaff);
+            
+            background-size: cover;
+            padding: 15px;
+        
+        }
+        .container-head{
+            color:#690cb0;
+            font-size: 45px;
+            font-family:"Roboto";
+            font-weight: 700;
+            padding: 10px;
+        }
+        .para{
+            color:#3e4c59;
+            font-size: 15px;
+            font-family:"Roboto";
+            font-weight: 600;
+            padding: 10px;
+        }
+        .image{
+            height: 80px;
+            width: 70px;
+            margin-left:10px ;
+            padding-top: 15px;
+        }
+        .numbers-head{
+            color:#323f4b;
+            font-size: 60px;
+            font-family:"Roboto";
+            font-weight: 500;
+            padding-left:20px ;
+            padding-top:0px ;
+        }
+        .sec{
+            color:#3e4c59;
+            font-size: 15px;
+            font-family:"Roboto";
+            font-weight: 400;
+            padding-top:40px;
+            
+        }
+        .inner-card{
+            background-color: #f3eaff;
+            border-radius: 14px;
+            border:1px solid #9aa5b1;
+            margin: 10px;
+            padding: 10px;
+        }
+        .submit-btn{
+            background-color: #690cb0;
+            color:#ffffff;
+            border-radius: 8px;
+            margin-right: 30px;
+        }
+        .reset-btn{
+            background-color: #ffffff;
+            
+            border-radius: 8px;
+        }
+        .inner-para{
+            color:#323f4b;
+            font-size: 20px;
+            font-family:"Roboto";
+            font-weight: 500;
+            
+            
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div id="speedTypingTest" class="col-12">
+              <h1 class="container-head">Speed <br>Typing Test</h1>
+              <p class="para">On your fingers lets set Go!</p>
+              <div class="d-flex flex-row">
+                <img class="image" src="https://assets.ccbp.in/frontend/dynamic-webapps/clock-img.png">
+                <p id="timer" class="numbers-head">0</p> 
+                <p class="sec">seconds</p>
+              </div>
+              <div class="inner-card">
+                  <p id="quoteDisplay" class="inner-para">Do not give your attenction to what others do or fail to do ,give a try to what you do or failed to do.</p>
+                  <textarea class="form-control" id="quoteInput" placeholder="Type here!!" row="5" col="20"> </textarea>
+                      <div id="text-center text-light mt-3">
+                          <div id="spinner" class="spinner-border " role="status">
+                           <span class="sr-only">Loading...</span>
+                          </div>
+                      </div>
+                 
+              </div>
+              <p id="result"></p>
+              <div class="text-center">
+                <button id="submitBtn" class="btn submit-btn">submit</button>
+                <button id="resetBtn" class="btn reset-btn">reset</button>
+                
+              </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let timer=document.getElementById('timer');
+let quoteDisplay=document.getElementById('quoteDisplay');
+let result=document.getElementById('result');
+let quoteInput=document.getElementById('quoteInput');
+let submitBtn=document.getElementById('submitBtn');
+let resetBtn=document.getElementById('resetBtn');
+let spinner=document.getElementById('spinner');
+
+let counter=0;
+spinner.classList.toggle('d-none');
+
+function startcounting(){
+    counter+=1;
+    timer.textContent=counter;
+    
+}
+let counterval=setInterval(startcounting,1000);
+
+function getquetoation(){
+    let options={
+        method:"GET"
+    };
+    fetch("https://apis.ccbp.in/random-quote",options)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(jsonData){
+        spinner.classList.add("d-none");
+        let quote=jsonData.content;
+        quoteDisplay.textContent=quote;
+        
+    });
+}
+getquetoation();
+startcounting();
+
+resetBtn.onclick=function(){
+    spinner.classList.remove("d-none");
+    getquetoation();
+    startcounting();
+    
+    counter=0;
+    result.textContent="";
+    quoteInput.textContent="";
+    
+};
+
+submitBtn.onclick=function(){
+    if(quoteInput.value===quoteDisplay.textContent){
+        clearInterval(counterval);
+        result.textContent="you typed in "+counter+" seconds";   
+    }
+    else{
+        result.textContent="you typed incorrect sentence";
+    }
+}
+
+
+
+</script>
+</body>
+
+</html>
